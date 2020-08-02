@@ -1,6 +1,7 @@
 ﻿using JetBrains.Annotations;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Jobs;
 
 public class Recall: MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class Recall: MonoBehaviour
     public float recallSpeed;
 
     public List<Vector3> positions;
+
+    public List<Quaternion> rotations; 
 
     private bool recalling;
 
@@ -46,7 +49,7 @@ public class Recall: MonoBehaviour
         if (!recalling)
         {
   
-            if (Input.GetKeyDown(KeyCode.Mouse1) && positions.Count > 0)
+            if (Input.GetKeyDown(KeyCode.Mouse1) && positions.Count > 0 && rotations.Count > 0)
             {
 
                 recalling = true;
@@ -70,10 +73,11 @@ public class Recall: MonoBehaviour
         else
         {
           
-            if (positions.Count > 0)
+            if (positions.Count > 0 && rotations.Count > 0)
             {
                 
                 transform.position = Vector3.Lerp(transform.position, positions[0], recallSpeed * Time.deltaTime);
+                transform.rotation = Quaternion.Lerp(transform.rotation, rotations[0], recallSpeed * Time.deltaTime);
           
                 float dist = Vector3.Distance(transform.position, positions[0]);
                 if (dist < 0.25f)
@@ -100,23 +104,23 @@ public class Recall: MonoBehaviour
     {
         
         transform.position = positions[0];
-
+        transform.rotation = rotations[0];
        
         positions.RemoveAt(0);
-
+        rotations.RemoveAt(0);
     }
 
     void StoreStats()
     {
         
         saveStatsTimer = saveInterval;
-
-        
         positions.Insert(0, transform.position);
+        rotations.Insert(0, transform.rotation);
        
-        if (positions.Count > maxStatsStored)
+        if (positions.Count > maxStatsStored && rotations.Count > maxStatsStored)
         {
             positions.RemoveAt(positions.Count - 1);
+            rotations.RemoveAt(rotations.Count - 1);
         }
 
     }
