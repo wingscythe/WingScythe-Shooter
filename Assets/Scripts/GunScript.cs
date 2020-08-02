@@ -65,14 +65,13 @@ public class GunScript : MonoBehaviour
     void Rewind()
     {
         RaycastHit hit;
-        rewind = true; 
         Ray ray = new Ray(barrel.position, transform.forward);
         if (Physics.Raycast(ray, out hit, range))
         {
             if (hit.collider.tag == "Enemy")
             {
                 Enemy enemy = hit.collider.GetComponent<Enemy>();
-                
+                enemy.GetComponent<GunScript>().rewind = true;                
             }
         }
 
