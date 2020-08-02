@@ -1,5 +1,6 @@
 ﻿using JetBrains.Annotations;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Jobs;
 
@@ -16,7 +17,7 @@ public class Recall: MonoBehaviour
 
     public List<Quaternion> rotations; 
 
-    private bool recalling;
+    public bool recalling;
 
     private float saveStatsTimer;
 
@@ -30,7 +31,7 @@ public class Recall: MonoBehaviour
 
     public TrailRenderer trail;
     public float trailtime; 
-    void Start()
+    public void Start()
     {
 
         controller = GetComponent<PlayerMovement>();
@@ -39,24 +40,23 @@ public class Recall: MonoBehaviour
         col = GetComponent<SphereCollider>();
         rb = GetComponent<Rigidbody>();
 
-        trail.startColor = Color.red;
         trailtime = maxDuration;
         maxStatsStored = maxDuration / saveInterval;
     }
 
-    void Update()
+    public void Update()
     {
         if (!recalling)
         {
   
-            if (Input.GetKeyDown(KeyCode.Mouse1) && positions.Count > 0 && rotations.Count > 0)
+            if (this.GetComponent<GunScript>().rewind == true && positions.Count > 0 && rotations.Count > 0)
             {
 
                 recalling = true;
 
                 controller.enabled = false;
-                col.enabled = false;
-                rb.isKinematic = true;
+                //col.enabled = false;
+                //rb.isKinematic = true;
             }
 
             //Handling our saving timer
@@ -80,6 +80,7 @@ public class Recall: MonoBehaviour
                 transform.rotation = Quaternion.Lerp(transform.rotation, rotations[0], recallSpeed * Time.deltaTime);
           
                 float dist = Vector3.Distance(transform.position, positions[0]);
+
                 if (dist < 0.25f)
                 {
                     SetStats();
@@ -90,17 +91,17 @@ public class Recall: MonoBehaviour
             {
 
                 recalling = false;
-
+                this.GetComponent<GunScript>().rewind = false;
                 controller.enabled = true;
                 col.enabled = true;
-                rb.isKinematic = false;
+                // rb.isKinematic = false;
             }
 
           
         }
     }
 
-    void SetStats()
+    public void SetStats()
     {
         
         transform.position = positions[0];
@@ -110,7 +111,7 @@ public class Recall: MonoBehaviour
         rotations.RemoveAt(0);
     }
 
-    void StoreStats()
+    public void StoreStats()
     {
         
         saveStatsTimer = saveInterval;
