@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using JetBrains.Annotations;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Recall: MonoBehaviour
@@ -24,15 +25,19 @@ public class Recall: MonoBehaviour
 
     private Rigidbody rb;
 
+    public TrailRenderer trail;
+    public float trailtime; 
     void Start()
     {
 
         controller = GetComponent<PlayerMovement>();
 
+        trail = GetComponent<TrailRenderer>();
         col = GetComponent<SphereCollider>();
         rb = GetComponent<Rigidbody>();
 
-
+        trail.startColor = Color.red;
+        trailtime = maxDuration;
         maxStatsStored = maxDuration / saveInterval;
     }
 
@@ -58,6 +63,7 @@ public class Recall: MonoBehaviour
             }
             else
             {
+                trail.time = trailtime;
                 StoreStats(); 
             }
         }
@@ -73,6 +79,7 @@ public class Recall: MonoBehaviour
                 if (dist < 0.25f)
                 {
                     SetStats();
+                    GetComponent<TrailRenderer>().time = positions.Count * saveInterval / 40;
                 }
             }
             else 
