@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class Launcher : MonoBehaviour
+public class Launcher : MonoBehaviourPunCallbacks
 {
     //# symbol is for pre-processing directives
     //# symbol always starts with #___ and ends with #end___
@@ -40,4 +40,37 @@ public class Launcher : MonoBehaviour
             PhotonNetwork.GameVersion = gameVersion;
         }
     }
+
+    //Checks if player was connected / disconnected
+    // - If player was connected make player join random room
+    // - If not, send a message/cause
+    public override void OnConnectedToMaster()
+    {
+        Debug.Log("OnConnectedToMaster Called");
+        PhotonNetwork.JoinRandomRoom();
+    }
+
+    public override void OnDisconnected(Photon.Realtime.DisconnectCause cause)
+    {
+        Debug.LogWarningFormat("OnDisconnected Called", cause);
+    }
+
+    public override void OnJoinRandomFailed(short returnCode, string message)
+    {
+        Debug.Log("JoinRandomFailed");
+        PhotonNetwork.CreateRoom(null, new Photon.Realtime.RoomOptions { MaxPlayers = maxPlayersPerRoom });
+    }
+
+    public override void OnJoinedRoom()
+    {
+        Debug.Log("OnJoinedRoom Called");
+    }
+
+    //Serialized to expose non public field
+    //Non public so it can only be modified in inspector and not in other scripts
+    [Tooltip("The maximum number of players per room. When a room is full, it can't be joined by new players, and so new room will be created")]
+    [SerializeField]
+    private byte maxPlayersPerRoom = 4;
+
+
 }
