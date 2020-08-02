@@ -79,7 +79,7 @@ public class Recall: MonoBehaviour
                 if (dist < 0.25f)
                 {
                     SetStats();
-                    GetComponent<TrailRenderer>().time = positions.Count * saveInterval / 40;
+                    GetComponent<TrailRenderer>().time = positions.Count * saveInterval / recallSpeed;
                 }
             }
             else 
