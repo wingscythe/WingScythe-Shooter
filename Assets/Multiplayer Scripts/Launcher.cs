@@ -9,6 +9,16 @@ public class Launcher : MonoBehaviourPunCallbacks
     //# symbol always starts with #___ and ends with #end___
     string gameVersion = "1";
 
+    [Tooltip("The Ui Panel to let the user enter name, connect and play")]
+    [SerializeField]
+    private GameObject startMenu;
+    [Tooltip("The UI Label to inform the user that the connection is in progress")]
+    [SerializeField]
+    private GameObject loadingLabel;
+
+
+
+
     //Monobehaviour called before Start()
     void Awake() 
     {
@@ -25,7 +35,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     /// Start the connection process
     /// - If already connected, join random room
     /// - If not, connect player to the instance of the Photon Cloud Network created for this game
-    void Connect() 
+    public void Connect() 
     {
         // Check if connected
         if (PhotonNetwork.IsConnected)
@@ -72,5 +82,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     [SerializeField]
     private byte maxPlayersPerRoom = 4;
 
+    public override void CreateRoom()
+    {
 
+    }
 }
