@@ -93,7 +93,7 @@ public class Recall: MonoBehaviour
                 recalling = false;
                 this.GetComponent<GunScript>().rewind = false;
                 controller.enabled = true;
-                col.enabled = true;
+                //col.enabled = true;
                 // rb.isKinematic = false;
             }
 
