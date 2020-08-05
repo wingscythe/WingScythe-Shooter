@@ -12,12 +12,16 @@ public class CTP : MonoBehaviour
     void Start()
     {
         
+      
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        //get colliders 
+        //check if dog > cat colliders, if so call update
+
     }
 
     private void OnCollisionEnter(Collision collision)
