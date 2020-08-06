@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 public class CTP : MonoBehaviour
@@ -22,8 +23,9 @@ public class CTP : MonoBehaviour
     {
         //get colliders 
         //check if dog > cat colliders, if so call update
+        setBool();
         updateTime();
-        
+
         Debug.Log(dog);
         Debug.Log(DogTime);
         Debug.Log(CatTime);
@@ -31,39 +33,52 @@ public class CTP : MonoBehaviour
 
     void checkColliders()
     {
-        Collider[] colliders = Physics.OverlapBox(this.transform.position, transform.localScale);
-        for(int i = 0; i< colliders.Length; i++)
+        Collider[] colliders = Physics.OverlapBox(transform.position, transform.localScale);
+        int i = 0;
+        while(i < colliders.Length)
         {
             if (colliders[i].gameObject.tag == "Dog" || colliders[i].gameObject.tag == "Cat")
             {
+                Debug.Log(colliders[i].gameObject.name);
                 if (colliders[i].gameObject.tag == "Dog") dogCount++;
                 else if (colliders[i].gameObject.tag == "Cat") catCount++;
             }
+            i++;
         }
     }
-    void setCat()
+    void setBool()
     {
-        cat = true;
+        if (dogCount > catCount)
+        {
+            dog = true;
+            cat = false;
+        }
+        else if (catCount > dogCount)
+        {
+            cat = true;
+            dog = false;
+        }
     }
-
-    void setDog()
-    {
-        dog = true;
-    }
-
     void updateTime()
     {
         if (cat)
         {
-            if (DogTime > CatTime && dogCount > catCount) DogTime -= Time.deltaTime;
+            if (DogTime > CatTime && DogTime != 0) DogTime -= Time.deltaTime;
             else CatTime += Time.deltaTime;
         }
 
         else if (dog)
         {
-            if (CatTime > DogTime && catCount > dogCount) CatTime -= Time.deltaTime;
+            if (CatTime > DogTime && CatTime != 0) CatTime -= Time.deltaTime;
             else DogTime += Time.deltaTime;
         }
+    }
+
+    void win()
+    {
+        if (DogTime == captureTime) Debug.Log("Win");
+        else if (CatTime == captureTime) Debug.Log("Win");
+
     }
 
     
