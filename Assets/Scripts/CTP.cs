@@ -10,22 +10,21 @@ public class CTP : MonoBehaviour
     public int dogCount = 0;
     public bool cat = false;
     public bool dog = false;
-    public int captureTime = 60;
+    public float captureTime;
     // Start is called before the first frame update
     void Start()
     {
         checkColliders();
+        captureTime = 10;
         Debug.Log(" cats: " + catCount + " dogs : " + dogCount);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //get colliders 
-        //check if dog > cat colliders, if so call update
+        Debug.Log(captureTime);
         setBool();
         updateTime();
-
         Debug.Log(dog);
         Debug.Log(DogTime);
         Debug.Log(CatTime);
@@ -64,22 +63,23 @@ public class CTP : MonoBehaviour
         if (cat)
         {
             if (DogTime > CatTime && DogTime != 0) DogTime -= Time.deltaTime;
+            else if (CatTime >= captureTime)
+            {
+                Debug.Log("Win");
+            }
             else CatTime += Time.deltaTime;
+            
         }
 
         else if (dog)
         {
             if (CatTime > DogTime && CatTime != 0) CatTime -= Time.deltaTime;
+            else if (DogTime >= captureTime)
+            {
+                Debug.Log("Win");
+            }
             else DogTime += Time.deltaTime;
+            
         }
-    }
-
-    void win()
-    {
-        if (DogTime == captureTime) Debug.Log("Win");
-        else if (CatTime == captureTime) Debug.Log("Win");
-
-    }
-
-    
+    }  
 }
