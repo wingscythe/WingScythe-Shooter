@@ -211,7 +211,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         //Load the Scene called GameLevel (Make sure it's added to build settings)
         if (PhotonNetwork.CountOfPlayers >= 1)
         {
-            PhotonNetwork.LoadLevel("Maze");
+            PhotonNetwork.LoadLevel("Shooter");
         }
     }
 
