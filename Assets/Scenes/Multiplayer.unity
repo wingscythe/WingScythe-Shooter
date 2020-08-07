@@ -308,6 +308,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55f84a48cc8d7484e8a9e10fc5e7dce3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelName: Shooter
+  maxPlayers: 4
+  startMenu: {fileID: 8355169594358227839}
   maxPlayersPerRoom: 4
 --- !u!4 &1018320500
 Transform:
@@ -894,6 +897,7 @@ GameObject:
   - component: {fileID: 311336924952530546}
   - component: {fileID: 1157066519286002496}
   - component: {fileID: 6481915137408266884}
+  - component: {fileID: 1397786194754224758}
   m_Layer: 5
   m_Name: Play Button
   m_TagString: Untagged
@@ -901,6 +905,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1397786194754224758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1397786194754224757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1911719e194e9f54198a3f3c2ae39346, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: 32
+  GUI1: {fileID: 6337722963560263820}
+  GUI2: {fileID: 1018320498}
+  isToggle: 0
 --- !u!222 &1408168817372463292
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2206,18 +2226,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1157066519286002496}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1018320499}
-        m_MethodName: Connect
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &6513364796551775266
 GameObject:
   m_ObjectHideFlags: 0
