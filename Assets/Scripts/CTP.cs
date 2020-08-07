@@ -33,7 +33,7 @@ public class CTP : MonoBehaviour
 
     void checkColliders()
     {
-        Collider[] colliders = Physics.OverlapBox(transform.position, transform.localScale);
+        Collider[] colliders = Physics.OverlapBox(transform.position, transform.localScale * 3);
         int i = 0;
         while(i < colliders.Length)
         {
@@ -41,7 +41,7 @@ public class CTP : MonoBehaviour
             {
                 Debug.Log(colliders[i].gameObject.name);
                 if (colliders[i].gameObject.tag == "Dog") dogCount++;
-                else if (colliders[i].gameObject.tag == "Cat") catCount++;
+                if (colliders[i].gameObject.tag == "Cat") catCount++;
             }
             i++;
         }
@@ -83,4 +83,11 @@ public class CTP : MonoBehaviour
             
         }
     }  
+
+    void captureFlag()
+    { 
+       
+        //possible flag implementation
+    }
+
 }
