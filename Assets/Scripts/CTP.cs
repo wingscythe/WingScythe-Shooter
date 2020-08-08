@@ -33,7 +33,7 @@ public class CTP : MonoBehaviour
 
     void checkColliders()
     {
-        Collider[] colliders = Physics.OverlapBox(transform.position, transform.localScale * 3);
+        Collider[] colliders = Physics.OverlapBox(transform.position, transform.localScale * 5);
         int i = 0;
         while(i < colliders.Length)
         {
