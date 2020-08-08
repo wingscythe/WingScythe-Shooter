@@ -9,11 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 828531567067637620}
-  - component: {fileID: 828531567067637621}
-  - component: {fileID: 828531567067637610}
+  - component: {fileID: 7511247848596765067}
   m_Layer: 0
-  m_Name: Player
-  m_TagString: Player
+  m_Name: Dog
+  m_TagString: Dog
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,22 +34,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &828531567067637621
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 828531567067637611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 616d1df9802da8b4ea90857dbc20c433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controller: {fileID: 828531567067637610}
-  speed: 10
---- !u!143 &828531567067637610
-CharacterController:
+--- !u!65 &7511247848596765067
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -60,13 +45,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 1
-  m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 2.4476209, y: 2.5459394, z: 3.275323}
+  m_Center: {x: 0.03216958, y: 1.1571918, z: -0.40877008}
 --- !u!1 &828531567659731895
 GameObject:
   m_ObjectHideFlags: 0
