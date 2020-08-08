@@ -10,30 +10,22 @@ public class PlayerMove : MonoBehaviour
     public Rigidbody rb;
     //public Animator anims;
     public Transform mcamera;
-    public int points = 0;
     [Header("Movement")]
     public float moveSpeed = 5f;
     private float horizontalInput = 0f;
     private float verticalInput = 0f;
-    public int fruit;
 
     [Header("State")]
     public float speed = 0;
 
     [Header("Animator")]
     private Animator anims;
-    public bool isHolding = false;
 
     // Start is called before the first frame update
     void Start()
     {
         speed = moveSpeed;
         anims = gameObject.GetComponentInChildren<Animator>();
-    }
-
-    int getPoints()
-    {
-        return points;
     }
 
     // Update is called once per frame
