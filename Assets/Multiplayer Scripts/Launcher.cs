@@ -13,9 +13,9 @@ public class Launcher : MonoBehaviourPunCallbacks
     public int maxPlayers = 4;
 
     //Start menu UI integration
-    [Tooltip("The Ui Panel to let the user enter name, connect and play")]
-    [SerializeField]
-    private GameObject startMenu;
+    // [Tooltip("The Ui Panel to let the user enter name, connect and play")]
+    // [SerializeField]
+    // private GameObject startMenu;
     // [Tooltip("The UI Label to inform the user that the connection is in progress")]
     // [SerializeField]
     // private GameObject loadingLabel;
@@ -50,6 +50,11 @@ public class Launcher : MonoBehaviourPunCallbacks
         Connect();
     }
 
+    public override void OnDisconnected(Photon.Realtime.DisconnectCause cause)
+    {
+        Debug.LogWarningFormat("OnDisconnected Called", cause);
+    }
+
     /// Start the connection process
     /// - If already connected, join random room
     /// - If not, connect player to the instance of the Photon Cloud Network created for this game
@@ -69,10 +74,6 @@ public class Launcher : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster () {
         Debug.Log("OnConnectedToMaster Called");
         PhotonNetwork.JoinRandomRoom();
-    }
-
-    public override void OnDisconnected (Photon.Realtime.DisconnectCause cause) {
-        Debug.LogWarningFormat("OnDisconnected Called", cause);
     }
 
     public override void OnRoomListUpdate (List<RoomInfo> roomList) {
