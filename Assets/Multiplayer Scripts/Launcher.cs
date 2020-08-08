@@ -73,7 +73,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     // - If not, send a message/cause
     public override void OnConnectedToMaster () {
         Debug.Log("OnConnectedToMaster Called");
-        PhotonNetwork.JoinRandomRoom();
+        PhotonNetwork.JoinLobby();
     }
 
     public override void OnRoomListUpdate (List<RoomInfo> roomList) {
